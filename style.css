@@ -3,46 +3,55 @@ body {
     margin: 0;
     background-color: #E8F1F2;
 }
+
 .nav {
     width: 100%;
 
-    position: fixed;
-    background-color: #E8F1F2;
+    position: relative;
+    background-color: #247BA0;
     top: 0;
 }
+
 .nav nav {
     display: flex;
     align-items: center;
 }
+
 .nav .logo {
     width: 100px;
     margin-left: 30px;
     margin-top: 10px;
 }
+
 .nav h1 {
     margin-left: 2%;
 }
-.nav li{
+
+.nav li {
     float: left;
     list-style: none;
     margin-left: 20px;
     margin-top: 0px;
 }
-.nav a{
+
+.nav a {
     margin-right: 40px;
     color: inherit;
     text-decoration: none;
-    font-size: 22px;
+    font-size: 18px;
 }
+
 .page-title {
     margin-top: 100px;
     margin-left: 2%;
 }
+
 .cards-container {
     display: flex;
     gap: 5%;
     justify-content: center;
 }
+
 .card {
     display: flex;
     flex-direction: column;
@@ -53,13 +62,99 @@ body {
     border: 1px solid black;
     border-radius: 10px;
 }
+
 .page-container {
     margin-left: 2%;
 }
+
 .footer {
     width: 100%;
+    padding-top: 0px;
     text-align: center;
-    position: fixed;
+    position:fixed;
     bottom: 0;
     background-color: #247BA0;
 }
+
+.footer-relative {
+    width: 100%;
+    padding-top: 0px;
+    text-align: center;
+    position:relative;
+    bottom: 0;
+    background-color: #247BA0;
+}
+
+.pesquisa {
+    margin-top: 10px;
+}
+
+.pesquisa input[type=text] {
+    margin-left: 30%;
+    font-size: 18px;
+    height: 25px;
+    width: 40%;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.pesquisa button {
+    margin-left: 0%;
+    float: inline-end;
+    height: 30px;
+    border-radius: 10px;
+}
+
+.cadastro-container{
+    border-radius: 10px;
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cadastro {
+    padding: 20px 20px 20px 20px;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    background-color: #247BA0;
+}
+.cadastro input,
+select {
+    margin-left: 5%;
+    margin-right: 5%;
+    float: inline-end;
+    margin: 5px 0;
+    height: 30px;
+    border-radius: 10px;
+    display: flex;
+    width: 500px;
+}
+.cadastro button{
+    margin-top: 5px;
+    width: 20%;
+    margin-left: 40%;
+    background-color: #E8F1F2;
+    font-size: 18px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+.cadastro fieldset{
+    border: 2px solid black;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    float: left;
+}
+.label-titulo{
+    margin-top: 20px;
+    font-size: 24px;
+    font-family: Helvetica, Arial, sans-serif;
+}
+.login input,
+select {
+    margin-left: 0%;
+    float: inline-end;
+    height: 30px;
+    border-radius: 10px;
+}
+
