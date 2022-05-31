@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <title>Administração</title>
     <link href="style.css" rel="stylesheet">
+    <script src="script.js"></script>
 </head>
+
 <body>
     <div class="nav">
         <nav>
@@ -20,14 +23,37 @@
             </ul>
         </nav>
     </div>
-    <h1 class="page-title">Pagina administração</h1>
-    <p><a href="index.html">Voltar para pagina inicial</a></p>
-
-    
-
-    <div class="footer">
+    <div class="cadastro-produto">
+        <div class="cadastro-produto-container">
+            <form id="formAdmin">
+                <fieldset>
+                    <span class="label-titulo">Cadastro Produtos</span>
+                    <br>
+                    <label for="id">Id:</label>
+                    <input type="text" id="id" placeholder="Id">
+                    <label for="codigo">Código:</label>
+                    <input type="text" id="codigo" placeholder="Código">
+                    <label for="categoria">Categoria:</label>
+                    <input type="text" id="categoria" placeholder="Categoria">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" placeholder="Nome">
+                    <label for="descricao">Descrição:</label>
+                    <input type="text" id="descricao" placeholder="Descrição">
+                    <label for="preco">Preço:</label>
+                    <input type="text" id="preco" placeholder="Preço">
+                    <label for="imagem">Imagem(URL):</label>
+                    <input type="text" id="imagem" placeholder="Imagem">
+                    <label for="peso">Peso:</label>
+                    <input type="text" id="peso" placeholder="Peso">
+                    <button click="cadastrar()">Cadastrar</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <div class="footer-relative">
         <p>Copyright © 2022 - Todos os direitos reservados</p>
         <h3>Feito por 3 monstros da computação: Eric Machado, Gabriel Leao e Mateus de Matos</h3>
     </div>
 </body>
+
 </html>

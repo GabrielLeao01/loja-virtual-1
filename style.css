@@ -1,3 +1,8 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+* {
+    font-family: 'Roboto', sans-serif;
+}
 body {
     padding: 0;
     margin: 0;
@@ -6,7 +11,6 @@ body {
 
 .nav {
     width: 100%;
-
     position: relative;
     background-color: #247BA0;
     top: 0;
@@ -32,13 +36,19 @@ body {
     list-style: none;
     margin-left: 20px;
     margin-top: 0px;
+    display: inline;
 }
 
 .nav a {
     margin-right: 40px;
-    color: inherit;
     text-decoration: none;
+    color: inherit;
+    display: inline-block;
     font-size: 18px;
+    transition: all .5s;
+}
+.nav a:hover {
+    color: #ffffff;
 }
 
 .page-title {
@@ -78,31 +88,11 @@ body {
 
 .footer-relative {
     width: 100%;
-    padding-top: 0px;
+    padding: 20px;
     text-align: center;
     position:relative;
     bottom: 0;
     background-color: #247BA0;
-}
-
-.pesquisa {
-    margin-top: 10px;
-}
-
-.pesquisa input[type=text] {
-    margin-left: 30%;
-    font-size: 18px;
-    height: 25px;
-    width: 40%;
-    border: 1px solid black;
-    border-radius: 10px;
-}
-
-.pesquisa button {
-    margin-left: 0%;
-    float: inline-end;
-    height: 30px;
-    border-radius: 10px;
 }
 
 .cadastro-container{
@@ -157,4 +147,66 @@ select {
     height: 30px;
     border-radius: 10px;
 }
+.menu-produto {
+    margin-top: -15px;
+    background-color: #247BA0;
+    padding: 5px;
+}
+.menu-produto li{
+    margin-top: 10px;
+    float: left;
+    list-style: none;
+    display: inline;
+    margin-left: 20px;
+    margin-top: 5px;
+}
+.menu-produto a{
+    margin-right: 40px;
+    color: inherit;
+    text-decoration: none;
+    font-size: 18px;
+}
+.pesquisa input[type=search] {
+    border-radius: 10px;
+    width: 40%;
+    height: 30px;
+}
 
+.pesquisa button {
+    margin-left: 0%;
+    float: inline-start;
+    height: 25px;
+    border-radius: 10px;
+}
+.cadastro-produto {
+    width: 100vw;
+    height: 100vh;
+    background-color: #E8F1F2;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.cadastro-produto-container {
+   width: fit-content;
+   height: fit-content;
+   background-color: #247BA0;
+   border-radius: 10px;
+   border: 2px solid black;
+}
+.cadastro-produto-container fieldset {
+    border-radius: 10px;
+    border: none;
+    margin-bottom: 10px;
+    float: left;
+}
+.cadastro-produto-container input {
+    margin-left: 5%;
+    margin-right: 5%;
+    float: inline-end;
+    margin: 5px 0;
+    height: 30px;
+    border-radius: 10px;
+    display: flex;
+    width: 500px;
+}
