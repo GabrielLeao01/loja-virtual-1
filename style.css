@@ -242,3 +242,23 @@ select {
    align-items: center;
    
 }
+.opadmin{
+    
+    display: inline-block;
+    
+    border: 1px solid #247BA0;
+
+}
+.opadmin a{
+    font-size: larger;
+    background: lightgray;
+    
+}
+.admin-container{
+    border-radius: 10px;
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
