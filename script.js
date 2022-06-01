@@ -1,7 +1,5 @@
 
-var servidor = "http://loja.buiar.com/?key"
-
-function cadastrar() {
-    let request = new XMLHttpRequest();
-    request.open('GET')
+function botao() {
+    const url = "http://loja.buiar.com/?key=rbqz3d&c=categoria&t=listar&f=json" 
+    fetch(url).then(response => response.json()).then(listar => console.log(listar))
 }
