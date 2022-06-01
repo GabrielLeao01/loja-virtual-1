@@ -75,6 +75,8 @@ body {
 
 .page-container {
     margin-left: 2%;
+    
+
 }
 
 .footer {
@@ -230,4 +232,13 @@ select {
         left: 50%;
         margin-right: -50%;
         transform: translate(-50%, -50%)
+}
+.cartprod{
+    border:1px solid #247BA0;
+
+}
+.cartprod img,p{
+   display: inline-block;
+   align-items: center;
+   
 }
