@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <title>Administração</title>
     <link href="style.css" rel="stylesheet">
-    <script src="script.js"></script>
 </head>
 
 <body>
@@ -23,9 +22,19 @@
             </ul>
         </nav>
     </div>
+    <div class="botoes-admin">
+        <button id="btnListarCategorias">Listar Categorias</button>
+        <button id="btnListarProdutos">Listar Itens</button>
+        <button id="btnCadastrarCategorias">Cadastrar Categorias</button>
+        <button id="btnCadastrarProdutos">Cadastrar Itens</button>
+        <button id="btnAlterarCategorias">Alterar Categorias</button>
+        <button id="btnAlterarProdutos">Alterar Itens</button>
+        <button id="btnExcluirCategorias">Excluir Categorias</button>
+        <button id="btnExcluirProdutos">Excluir Itens</button>
+    </div>
     <div class="cadastro-produto">
         <div class="cadastro-produto-container">
-            <form id="formAdmin">
+            <form id="form">
                 <fieldset>
                     <span class="label-titulo">Cadastro Produtos</span>
                     <br>
@@ -45,15 +54,16 @@
                     <input type="text" id="imagem" placeholder="Imagem">
                     <label for="peso">Peso:</label>
                     <input type="text" id="peso" placeholder="Peso">
-                    <button onClick="botao()">Cadastrar</button>
+                    <button id="btnListarCategorias">Cadastrar</button>
                 </fieldset>
             </form>
         </div>
     </div>
-    <div class="footer-relative">
-        <p>Copyright © 2022 - Todos os direitos reservados</p>
-        <h3>Feito por 3 monstros da computação: Eric Machado, Gabriel Leao e Mateus de Matos</h3>
+    <div>
+        <ul id="lista">
+        </ul>
     </div>
+    <script src="script.js"></script>
 </body>
 
 </html>
