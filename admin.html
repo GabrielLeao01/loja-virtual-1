@@ -42,8 +42,8 @@
                     <input type="text" id="id" placeholder="Id">
                     <label for="codigo">Código:</label>
                     <input type="text" id="codigo" placeholder="Código">
-                    <label for="categoria">Categoria:</label>
-                    <input type="text" id="categoria" placeholder="Categoria">
+                    <select id="cbCategoria">
+                    </select>
                     <label for="nome">Nome:</label>
                     <input type="text" id="nome" placeholder="Nome">
                     <label for="descricao">Descrição:</label>
@@ -54,7 +54,7 @@
                     <input type="text" id="imagem" placeholder="Imagem">
                     <label for="peso">Peso:</label>
                     <input type="text" id="peso" placeholder="Peso">
-                    <button id="btnCadastrarProdutos">Cadastrar</button>
+                    <button id="btnCadastrar">Cadastrar</button>
                 </fieldset>
             </form>
         </div>
@@ -71,7 +71,13 @@
         <table border="1" id="tabelaProduto" >
             <tr>
                 <th>Id</th>
+                <th>Código</th>
+                <th>Categoria</th>
                 <th>Nome</th>
+                <th>Descrição</th>
+                <th>Preço</th>
+                <th>Imagem</th>
+                <th>Peso</th>
             </tr>
         </table>
     </div>
