@@ -7,20 +7,19 @@ var btnExcluirCategorias = document.getElementById("btnExcluirCategorias")
 var btnExcluirProdutos = document.getElementById("btnExcluirProdutos")
 var btnCadastrarCategorias = document.getElementById("btnCadastrarCategorias")
 var btnCadastrarProdutos = document.getElementById("btnCadastrarProdutos")
-
+var request = new XMLHttpRequest();
 
 btnListarCategorias.addEventListener('click', function (event) {
     event.preventDefault()
     esconderTabelas();
-    limparTabelas(); 
-    var request = new XMLHttpRequest();
+    limparTabelas();
     url = "http://loja.buiar.com/?key=rbqz3d&f=json&c=categoria&t=listar"
     request.open('GET', url);
     request.responseType = 'json';
     request.send()
     request.onload = function () {
         if (request.readyState == 4 && request.status == 200) {
-            listaCategorias = request.response.dados
+            var listaCategorias = request.response.dados
             var tabelaCategoria = document.getElementById('tabelaCategoria')
             for (let i = 0; i < listaCategorias.length; i++) {
                 let tr = document.createElement('tr')
@@ -38,20 +37,19 @@ btnListarCategorias.addEventListener('click', function (event) {
         }
     }
 })
+
 btnListarProdutos.addEventListener('click', function (event) {
     event.preventDefault()
     esconderTabelas()
     limparTabelas()
-    var request = new XMLHttpRequest();
     url = "http://loja.buiar.com/?key=rbqz3d&f=json&c=produto&t=listar"
     request.open('GET', url);
     request.responseType = 'json';
     request.send()
     request.onload = function () {
         if (request.readyState == 4 && request.status == 200) {
-            listaProdutos = request.response.dados
-            console.log(listaProdutos)
-            var tabelaProduto = document.getElementById('tabela')
+            var listaProdutos = request.response.dados
+            var tabelaProduto = document.getElementById('tabelaProduto')
             for (let i = 0; i < listaProdutos.length; i++) {
                 let tr = document.createElement('tr')
                 tabelaProduto.appendChild(tr)
@@ -59,23 +57,78 @@ btnListarProdutos.addEventListener('click', function (event) {
                 td.innerText = listaProdutos[i].id
                 tr.appendChild(td)
                 td = document.createElement('td')
+                td.innerText = listaProdutos[i].codigo
+                tr.appendChild(td)
+                td = document.createElement('td')
+                td.innerText = listaProdutos[i].categoria
+                tr.appendChild(td)
+                td = document.createElement('td')
                 td.innerText = listaProdutos[i].nome
                 tr.appendChild(td)
+                td = document.createElement('td')
+                td.innerText = listaProdutos[i].descricao
+                tr.appendChild(td)
+                td = document.createElement('td')
+                td.innerText = (listaProdutos[i].preco * 1).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
+                tr.appendChild(td)
+                td = document.createElement('td')
+                td.innerText = listaProdutos[i].nome
+                tr.appendChild(td)
+                td = document.createElement('td')
+                td.innerText = listaProdutos[i].peso + 'g'
+                tr.appendChild(td)
             }
-            document.getElementById('lista-produtos').style.display = "flex"
+            document.getElementById('lista-produto').style.display = "flex"
         } else {
             alert("Requisição errada")
         }
     }
 })
+
 btnCadastrarProdutos.addEventListener('click', function (event) {
     event.preventDefault()
     limparTabelas()
+    carregarCbCategoria()
     document.getElementById('cadastro-produto').style.display = "flex"
-    var request = new XMLHttpRequest();
-    var id = "&id=" + document.getElementById('idProduto')
-    var nome = "&nome=" + document.getElementById('nomeProduto')
-    url = "http://loja.buiar.com/?key=rbqz3d&f=json&c=produto&t=alterar" + id + nome
+})
+
+btnCadastrar.addEventListener('click', function (event) {
+    event.preventDefault()
+    let form = document.getElementById('form')
+    let id = document.getElementById('id')
+    let codigo = document.getElementById('codigo')
+    let categoria = document.getElementById('categoria')
+    let nome = document.getElementById('nome')
+    let descricao = document.getElementById('descricao')
+    let preco = document.getElementById('preco')
+    let imagem = document.getElementById('imagem')
+    let peso = document.getElementById('peso')
+    url = "http://loja.buiar.com/?key=rbqz3d&f=json&c=produto&t=inserir"
+    if(id.value != '') {
+        url += '&id='+ id.value
+    }
+    if(nome.value != '') {
+        url += '&nome='+ nome.value
+    }
+    if(codigo.value != '') {
+        url += '&codigo='+ codigo.value
+    }
+    if(categoria.value != '') {
+        url += '&categoria='+ id.value
+    }
+    if(descricao.value != '') {
+        url += '&descricao='+ descricao.value
+    }
+    if(preco.value != '') {
+        url += '&preco='+ preco.value
+    }
+    if(imagem.value != '') {
+        url += '&imagem='+ imagem.value
+    }
+    if(peso.value != '') {
+        url += '&peso='+ peso.value
+    }
+    console.log
     request.open('GET', url);
     request.responseType = 'json';
     request.send()
@@ -95,29 +148,48 @@ btnCadastrarProdutos.addEventListener('click', function (event) {
         }
     }
 })
+
 function limparTabelas() {
     tabelaCategoria.innerText = ""
     tabelaCategoria.innerHTML = '<tr>' +
-    '<th>Id</th >' +
-    '<th>Nome</th>' +
-    '</tr> '
+        '<th>Id</th >' +
+        '<th>Nome</th>' +
+        '</tr> '
     tabelaProduto.innerText = ""
-    tabelaProduto.innerHTML = '<tr>' +
-    '<th>Id</th >' +
-    '<th>Nome</th>' +
-    '</tr> '
+    tabelaProduto.innerHTML =
+        '<tr>' +
+        '<th>Id</th>' +
+        '<th>Código</th>' +
+        '<th>Categoria</th>' +
+        '<th>Nome</th>' +
+        '<th>Descrição</th>' +
+        '<th>Preço</th>' +
+        '<th>Imagem</th>' +
+        '<th>Peso</th>' +
+        '</tr>'
 }
+
 function esconderTabelas() {
     document.getElementById('cadastro-produto').style.display = "none"
     document.getElementById('lista-categoria').style.display = "none"
     document.getElementById('lista-produto').style.display = "none"
 }
-let form = document.getElementById('form')
-let id = document.getElementById('id')
-let codigo = document.getElementById('codigo')
-let categoria = document.getElementById('categoria')
-let nome = document.getElementById('nome')
-let descriao = document.getElementById('descricao')
-let preco = document.getElementById('preco')
-let imagem = document.getElementById('imagem')
-let peso = document.getElementById('peso')
+
+function carregarCbCategoria() {
+    url = "http://loja.buiar.com/?key=rbqz3d&f=json&c=categoria&t=listar"
+    request.open('GET', url);
+    request.responseType = 'json';
+    request.send()
+    request.onload = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            var listaCategorias = request.response.dados
+            let cbCategoria = document.getElementById('cbCategoria')
+            for (let k = 0; k < listaCategorias.length; k++) {
+                let opt = document.createElement('option')
+                opt.value = listaCategorias[k].id
+                opt.text = listaCategorias[k].nome
+                cbCategoria.appendChild(opt)
+            }
+        }
+    }
+}

@@ -202,7 +202,7 @@ select {
     margin-bottom: 10px;
     float: left;
 }
-.cadastro-produto-container input {
+.cadastro-produto-container input, select {
     margin-left: 5%;
     margin-right: 5%;
     float: inline-end;
@@ -249,9 +249,11 @@ select {
     align-items: center;
     padding: 10px;
     border-radius: 5px;
-    margin: 20px;
+    margin: 2%;
     cursor: pointer;
     transition: all .7s;
+    justify-content: center;
+    display: inline;
 }
 .botoes-admin button:hover{
     background-color: #247BA0;
