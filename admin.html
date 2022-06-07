@@ -32,7 +32,7 @@
         <button id="btnExcluirCategorias">Excluir Categorias</button>
         <button id="btnExcluirProdutos">Excluir Itens</button>
     </div>
-    <div class="cadastro-produto">
+    <div class="cadastro-produto" id="cadastro-produto">
         <div class="cadastro-produto-container">
             <form id="form">
                 <fieldset>
@@ -54,14 +54,26 @@
                     <input type="text" id="imagem" placeholder="Imagem">
                     <label for="peso">Peso:</label>
                     <input type="text" id="peso" placeholder="Peso">
-                    <button id="btnListarCategorias">Cadastrar</button>
+                    <button id="btnCadastrarProdutos">Cadastrar</button>
                 </fieldset>
             </form>
         </div>
     </div>
-    <div>
-        <ul id="lista">
-        </ul>
+    <div class="lista-categoria" id="lista-categoria">
+        <table border="1" id="tabelaCategoria" >
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+            </tr>
+        </table>
+    </div>
+    <div class="lista-produto" id="lista-produto">
+        <table border="1" id="tabelaProduto" >
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+            </tr>
+        </table>
     </div>
     <script src="script.js"></script>
 </body>

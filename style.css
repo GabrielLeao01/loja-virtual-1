@@ -184,7 +184,7 @@ select {
     width: 100vw;
     height: 100vh;
     background-color: #E8F1F2;
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -255,4 +255,10 @@ select {
 }
 .botoes-admin button:hover{
     background-color: #247BA0;
+}
+.lista-categoria {
+    display: none;
+}
+.lista-produto {
+    display: none;
 }
