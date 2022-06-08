@@ -23,18 +23,18 @@
         </nav>
     </div>
     <div class="botoes-admin">
-        <button id="btnListarCategorias">Listar Categorias</button>
-        <button id="btnListarProdutos">Listar Itens</button>
-        <button id="btnCadastrarCategorias">Cadastrar Categorias</button>
-        <button id="btnCadastrarProdutos">Cadastrar Itens</button>
-        <button id="btnAlterarCategorias">Alterar Categorias</button>
-        <button id="btnAlterarProdutos">Alterar Itens</button>
-        <button id="btnExcluirCategorias">Excluir Categorias</button>
-        <button id="btnExcluirProdutos">Excluir Itens</button>
+        <button id="listarCategorias">Listar Categorias</button>
+        <button id="listarProdutos">Listar Itens</button>
+        <button id="cadastrarCategorias">Cadastrar Categorias</button>
+        <button id="cadastrarProdutos">Cadastrar Itens</button>
+        <button id="alterarCategorias">Alterar Categorias</button>
+        <button id="alterarProdutos">Alterar Itens</button>
+        <button id="excluirCategorias">Excluir Categorias</button>
+        <button id="excluirProdutos">Excluir Itens</button>
     </div>
     <div class="cadastro-produto" id="cadastro-produto">
         <div class="cadastro-produto-container">
-            <form id="form">
+            <form id="formCadastroProduto">
                 <fieldset>
                     <span class="label-titulo">Cadastro Produtos</span>
                     <br>
@@ -42,6 +42,7 @@
                     <input type="text" id="id" placeholder="Id">
                     <label for="codigo">Código:</label>
                     <input type="text" id="codigo" placeholder="Código">
+                    <label for="cbCategoria">Categoria:</label>
                     <select id="cbCategoria">
                     </select>
                     <label for="nome">Nome:</label>
@@ -54,28 +55,28 @@
                     <input type="text" id="imagem" placeholder="Imagem">
                     <label for="peso">Peso:</label>
                     <input type="text" id="peso" placeholder="Peso">
-                    <button id="btnCadastrar">Cadastrar</button>
+                    <button class="btnCadastrar" id="btnCadastrar">Cadastrar</button>
                 </fieldset>
             </form>
         </div>
     </div>
     <div class="cadastro-categoria" id="cadastro-categoria">
         <div class="cadastro-categoria-container">
-            <form id="form">
+            <form id="formCadastroCategoria">
                 <fieldset>
                     <span class="label-titulo">Cadastro Categoria</span>
                     <br>
-                    <label for="id">Id:</label>
-                    <input type="text" id="id" placeholder="Id">
-                    <label for="nome">Nome:</label>
-                    <input type="text" id="nome" placeholder="Nome">
-                    <button id="btnCadastrar">Cadastrar</button>
+                    <label for="idCategoria">Id:</label>
+                    <input type="text" id="idCategoria" placeholder="Id">
+                    <label for="nomeCategoria">Nome:</label>
+                    <input type="text" id="nomeCategoria" placeholder="Nome">
+                    <button class="btnCadastrar" id="btnCadastroCategoria">Cadastrar</button>
                 </fieldset>
             </form>
         </div>
     </div>
     <div class="lista-categoria" id="lista-categoria">
-        <table border="1" id="tabelaCategoria" >
+        <table id="tabelaCategoria">
             <tr>
                 <th>Id</th>
                 <th>Nome</th>
@@ -83,7 +84,7 @@
         </table>
     </div>
     <div class="lista-produto" id="lista-produto">
-        <table border="1" id="tabelaProduto" >
+        <table border="1" id="tabelaProduto">
             <tr>
                 <th>Id</th>
                 <th>Código</th>
@@ -96,7 +97,50 @@
             </tr>
         </table>
     </div>
+    <div class="cadastro-categoria" id="altera-categoria">
+        <div class="cadastro-categoria-container">
+            <form id="formalterarCategoria">
+                <fieldset>
+                    <label for="cbCategoriaAlteracao">Categoria:</label>
+                    <br>
+                    <select id="cbCategoriaAlteracao">
+                    </select>
+                    <label for="nomeAlteraCategoria">Nome:</label>
+                    <input type="text" id="nomeAlteraCategoria" placeholder="Nome">
+                    <button class="btnCadastrar" id="btnAlterarCategoria">Cadastrar</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <div class="cadastro-produto" id="altera-produto">
+        <div class="cadastro-produto-container">
+            <form id="formAlteraProduto">
+                <fieldset>
+                    <span class="label-titulo">Alterar Produtos</span>
+                    <br>
+                    <label for="cbIdAlteracao">Id:</label>
+                    <select id="cbIdAlteracao">
+                    </select>
+                    <label for="codigo">Código:</label>
+                    <input type="text" id="codigoAlteracao" placeholder="Código">
+                    <label for="cbProdutoAlteracao">Categoria:</label>
+                    <select id="cbProdutoAlteracao">
+                    </select>
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nomeAlteracao" placeholder="Nome">
+                    <label for="descricao">Descrição:</label>
+                    <input type="text" id="descricaoAlteracao" placeholder="Descrição">
+                    <label for="preco">Preço:</label>
+                    <input type="number" id="precoAlteracao" placeholder="Preço">
+                    <label for="imagem">Imagem(URL):</label>
+                    <input type="text" id="imagemAlteracao" placeholder="Imagem">
+                    <label for="peso">Peso:</label>
+                    <input type="number" id="pesoAlteracao" placeholder="Peso">
+                    <button class="btnCadastrar" id="btnAlteraProduto">Cadastrar</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
-
 </html>
