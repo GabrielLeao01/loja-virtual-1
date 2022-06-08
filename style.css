@@ -212,6 +212,37 @@ select {
     display: flex;
     width: 500px;
 }
+.cadastro-categoria {
+    width: 100vw;
+    background-color: #E8F1F2;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.cadastro-categoria-container {
+   width: fit-content;
+   height: fit-content;
+   background-color: #247BA0;
+   border-radius: 10px;
+   border: 2px solid black;
+}
+.cadastro-categoria-container fieldset {
+    border-radius: 10px;
+    border: none;
+    margin-bottom: 10px;
+    float: left;
+}
+.cadastro-categoria-container input, select {
+    margin-left: 5%;
+    margin-right: 5%;
+    float: inline-end;
+    margin: 5px 0;
+    height: 30px;
+    border-radius: 10px;
+    display: flex;
+    width: 500px;
+}
 .sobre h1{
     left: 41.7%;
     position: absolute;
@@ -260,7 +291,30 @@ select {
 }
 .lista-categoria {
     display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
+       
 }
+.lista-categoria table{
+   
+    background-color: #247BA0;
+    border-radius: 10px;
+ 
+}
+
 .lista-produto {
     display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.lista-produto table{
+
+    background-color: #247BA0;
+    border-radius: 10px;
+   
+
+
 }
