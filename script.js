@@ -91,6 +91,13 @@ btnCadastrarProdutos.addEventListener('click', function (event) {
     carregarCbCategoria()
     document.getElementById('cadastro-produto').style.display = "flex"
 })
+btnCadastrarCategorias.addEventListener('click', function (event) {
+    event.preventDefault()
+    limparTabelas()
+    carregarCbCategoria()
+    document.getElementById('cadastro-categoria').style.display = "flex"
+    
+})
 
 btnCadastrar.addEventListener('click', function (event) {
     event.preventDefault()
