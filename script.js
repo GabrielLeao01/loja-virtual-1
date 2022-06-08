@@ -39,7 +39,7 @@ alterarProdutos.addEventListener('click', function (event) {
     esconderTabelas();
     limparTabelas()
     carregarCbProdutoAlteracao()
-    carregarCbCategoriaItemAlteracao()
+    carregarCbCategoriaProdutoAlteracao()
     document.getElementById('altera-produto').style.display = "flex"
 })
 excluirCategorias.addEventListener('click', function (event) {
