@@ -10,15 +10,14 @@ var cadastrarProdutos = document.getElementById("cadastrarProdutos")
 var btnCadastroCategoria = document.getElementById("btnCadastroCategoria")
 var btnAlteraCategoria = document.getElementById("btnAlterarCategoria")
 var btnAlteraProduto = document.getElementById("btnAlteraProduto")
+var btnExcluirCategoria = document.getElementById("btnExcluirCategoria")
 var request = new XMLHttpRequest();
-carregarCbCategoria();
-carregarCbCategoriaAlteracao()
-carregarCbProdutoAlteracao()
 
 cadastrarProdutos.addEventListener('click', function (event) {
     event.preventDefault()
     esconderTabelas();
     limparTabelas()
+    carregarCbCategoria();
     document.getElementById('cadastro-produto').style.display = "flex"
 })
 
@@ -32,13 +31,30 @@ alterarCategorias.addEventListener('click', function (event) {
     event.preventDefault()
     esconderTabelas();
     limparTabelas()
+    carregarCbCategoriaAlteracao()
     document.getElementById('altera-categoria').style.display = "flex"
 })
 alterarProdutos.addEventListener('click', function (event) {
     event.preventDefault()
     esconderTabelas();
     limparTabelas()
+    carregarCbProdutoAlteracao()
+    carregarCbCategoriaItemAlteracao()
     document.getElementById('altera-produto').style.display = "flex"
+})
+excluirCategorias.addEventListener('click', function (event) {
+    event.preventDefault()
+    esconderTabelas();
+    limparTabelas()
+    carregarCbCategoriaExclusao()
+    document.getElementById('excluir-categoria').style.display = "flex"
+})
+excluirProdutos.addEventListener('click', function (event) {
+    event.preventDefault()
+    esconderTabelas();
+    limparTabelas()
+    carregarCbProdutoExclusao()
+    document.getElementById('excluir-produto').style.display = "flex"
 })
 
 listarCategorias.addEventListener('click', function (event) {
@@ -163,6 +179,7 @@ btnCadastrar.addEventListener('click', function (event) {
         if (request.readyState == 4 && request.status == 200) {
             resultado = request.response.dados
             alert("Produto adicionado com sucesso!")
+            location.reload()
         }
         else {
             alert("Requisição errada")
@@ -190,6 +207,7 @@ btnCadastroCategoria.addEventListener('click', function (event) {
         if (request.readyState == 4 && request.status == 200) {
             resultado = request.response.dados
             alert("Categoria adicionado com sucesso!")
+            location.reload()
         }
         else {
             alert("Requisição errada")
@@ -217,6 +235,55 @@ btnAlteraCategoria.addEventListener('click', function (event) {
         if (request.readyState == 4 && request.status == 200) {
             resultado = request.response.dados
             alert("Categoria alterada com sucesso!")
+            location.reload()
+        }
+        else {
+            alert("Requisição errada")
+        }
+    }
+})
+btnExcluirCategoria.addEventListener('click', function (event) {
+    event.preventDefault()
+    let id = document.getElementById('cbCategoriaExclusao')
+    let url = "http://loja.buiar.com/?key=rbqz3d&f=json&c=categoria&t=remover"
+    let params = ""
+    if(id.value != '') {
+        params += '&id='+ id.value
+    }
+    console.log(params)
+    request.open('POST', url);
+    request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+    request.responseType = 'json';
+    request.send(params)
+    request.onload = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            resultado = request.response.dados
+            alert("Categoria removida com sucesso!")
+            location.reload()
+        }
+        else {
+            alert("Requisição errada")
+        }
+    }
+})
+btnExcluirProduto.addEventListener('click', function (event) {
+    event.preventDefault()
+    let id = document.getElementById('cbProdutoExclusao')
+    let url = "http://loja.buiar.com/?key=rbqz3d&f=json&c=produto&t=remover"
+    let params = ""
+    if(id.value != '') {
+        params += '&id='+ id.value
+    }
+    console.log(params)
+    request.open('POST', url);
+    request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+    request.responseType = 'json';
+    request.send(params)
+    request.onload = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            resultado = request.response.dados
+            alert("Produto removido com sucesso!")
+            location.reload()
         }
         else {
             alert("Requisição errada")
@@ -302,16 +369,20 @@ function esconderTabelas() {
     document.getElementById('lista-produto').style.display = "none"
     document.getElementById('cadastro-categoria').style.display = "none"
     document.getElementById('altera-categoria').style.display = "none"
+    document.getElementById('altera-produto').style.display = "none"
+    document.getElementById('excluir-categoria').style.display = "none"
+    document.getElementById('excluir-produto').style.display = "none"
 }
 
 function carregarCbCategoria() {
+    document.getElementById('cbCategoria').innerHTML = "<select id='cbCategoria'></select>"
     url = "http://loja.buiar.com/?key=rbqz3d&f=json&c=categoria&t=listar"
     request.open('GET', url);
     request.responseType = 'json';
     request.send()
     request.onload = function () {
         if (request.readyState == 4 && request.status == 200) {
-            var listaCategorias = request.response.dados
+            listaCategorias = request.response.dados
             let cbCategoria = document.getElementById('cbCategoria')
             for (let k = 0; k < listaCategorias.length; k++) {
                 let opt = document.createElement('option')
@@ -323,13 +394,14 @@ function carregarCbCategoria() {
     }
 }
 function carregarCbCategoriaAlteracao() {
+    document.getElementById('cbCategoria').innerHTML = "<select id='cbCategoriaAlteracao'></select>"
     url = "http://loja.buiar.com/?key=rbqz3d&f=json&c=categoria&t=listar"
     request.open('GET', url);
     request.responseType = 'json';
     request.send()
     request.onload = function () {
         if (request.readyState == 4 && request.status == 200) {
-            let listaCategorias = request.response.dados
+            listaCategorias = request.response.dados
             let cbCategoriaAlteracao = document.getElementById('cbCategoriaAlteracao')
             for (let k = 0; k < listaCategorias.length; k++) {
                 let opt = document.createElement('option')
@@ -341,19 +413,77 @@ function carregarCbCategoriaAlteracao() {
     }
 }
 function carregarCbProdutoAlteracao() {
+    document.getElementById('cbCategoria').innerHTML = "<select id='cbIdAlteracao'></select>"
     url = "http://loja.buiar.com/?key=rbqz3d&f=json&c=produto&t=listar"
     request.open('GET', url);
     request.responseType = 'json';
     request.send()
     request.onload = function () {
         if (request.readyState == 4 && request.status == 200) {
-            let listaProdutos = request.response.dados
+            listaProdutos = request.response.dados
             let cbIdAlteracao = document.getElementById('cbIdAlteracao')
             for (let k = 0; k < listaProdutos.length; k++) {
                 let opt = document.createElement('option')
                 opt.value = listaProdutos[k].id
                 opt.text = listaProdutos[k].nome
                 cbIdAlteracao.appendChild(opt)
+            }
+        }
+    }
+}
+function carregarCbCategoriaProdutoAlteracao() {
+    document.getElementById('cbCategoria').innerHTML = "<select id='cbIdAlteracao'></select>"
+    url = "http://loja.buiar.com/?key=rbqz3d&f=json&c=produto&t=listar"
+    request.open('GET', url);
+    request.responseType = 'json';
+    request.send()
+    request.onload = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            listaProdutos = request.response.dados
+            let cbIdAlteracao = document.getElementById('cbIdAlteracao')
+            for (let k = 0; k < listaProdutos.length; k++) {
+                let opt = document.createElement('option')
+                opt.value = listaProdutos[k].id
+                opt.text = listaProdutos[k].nome
+                cbIdAlteracao.appendChild(opt)
+            }
+        }
+    }
+}
+function carregarCbCategoriaExclusao() {
+    document.getElementById('cbCategoria').innerHTML = "<select id='cbCategoriaExclusao'></select>"
+    url = "http://loja.buiar.com/?key=rbqz3d&f=json&c=categoria&t=listar"
+    request.open('GET', url);
+    request.responseType = 'json';
+    request.send()
+    request.onload = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            listaCategorias = request.response.dados
+            let cbCategoriaExclusao = document.getElementById('cbCategoriaExclusao')
+            for (let k = 0; k < listaCategorias.length; k++) {
+                let opt = document.createElement('option')
+                opt.value = listaCategorias[k].id
+                opt.text = listaCategorias[k].nome
+                cbCategoriaExclusao.appendChild(opt)
+            }
+        }
+    }
+}
+function carregarCbProdutoExclusao() {
+    document.getElementById('cbCategoria').innerHTML = "<select id='cbProdutoExclusao'></select>"
+    url = "http://loja.buiar.com/?key=rbqz3d&f=json&c=produto&t=listar"
+    request.open('GET', url);
+    request.responseType = 'json';
+    request.send()
+    request.onload = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            listaProdutos = request.response.dados
+            let cbProdutoExclusao = document.getElementById('cbProdutoExclusao')
+            for (let k = 0; k < listaProdutos.length; k++) {
+                let opt = document.createElement('option')
+                opt.value = listaProdutos[k].id
+                opt.text = listaProdutos[k].nome
+                cbProdutoExclusao.appendChild(opt)
             }
         }
     }
