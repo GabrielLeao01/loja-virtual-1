@@ -394,7 +394,7 @@ function carregarCbCategoria() {
     }
 }
 function carregarCbCategoriaAlteracao() {
-    document.getElementById('cbCategoria').innerHTML = "<select id='cbCategoriaAlteracao'></select>"
+    document.getElementById('cbCategoriaAlteracao').innerHTML = "<select id='cbCategoriaAlteracao'></select>"
     url = "http://loja.buiar.com/?key=rbqz3d&f=json&c=categoria&t=listar"
     request.open('GET', url);
     request.responseType = 'json';

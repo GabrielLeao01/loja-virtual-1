@@ -18,7 +18,6 @@
                 <li><a href="sobre.html">Sobre nossa loja</a> </li>
                 <li><a href="admin.html">Administração</a> </li>
                 <li><a href="contatos.html">Contatos</a></li>
-                <li><a href="usuario.html">Usuário</a></li>
             </ul>
         </nav>
     </div>
@@ -32,11 +31,11 @@
         <button id="excluirCategorias">Excluir Categorias</button>
         <button id="excluirProdutos">Excluir Itens</button>
     </div>
-    <div class="cadastro-produto" id="cadastro-produto">
-        <div class="cadastro-produto-container">
+    <div class="cadastro-categoria" id="cadastro-produto">
+        <div class="cadastro-categoria-container">
             <form id="formCadastroProduto">
                 <fieldset>
-                    <span class="label-titulo">Cadastro Produtos</span>
+                    <span class="label-titulo">Cadastro Produto</span>
                     <br>
                     <label for="id">Id:</label>
                     <input type="text" id="id" placeholder="Id">
@@ -76,6 +75,8 @@
         </div>
     </div>
     <div class="lista-categoria" id="lista-categoria">
+        <span class="label-titulo">Categoria(s)</span>
+        <br>
         <table id="tabelaCategoria">
             <tr>
                 <th>Id</th>
@@ -84,6 +85,8 @@
         </table>
     </div>
     <div class="lista-produto" id="lista-produto">
+        <span class="label-titulo">Produto(s)</span>
+        <br>
         <table border="1" id="tabelaProduto">
             <tr>
                 <th>Id</th>
@@ -101,19 +104,21 @@
         <div class="cadastro-categoria-container">
             <form id="formalterarCategoria">
                 <fieldset>
+                    <span class="label-titulo">Alterar Categoria</span>
+                    <br>
                     <label for="cbCategoriaAlteracao">Categoria:</label>
                     <br>
                     <select id="cbCategoriaAlteracao">
                     </select>
                     <label for="nomeAlteraCategoria">Nome:</label>
                     <input type="text" id="nomeAlteraCategoria" placeholder="Nome">
-                    <button class="btnCadastrar" id="btnAlterarCategoria">Cadastrar</button>
+                    <button class="btnCadastrar" id="btnAlterarCategoria">Alterar</button>
                 </fieldset>
             </form>
         </div>
     </div>
-    <div class="cadastro-produto" id="altera-produto">
-        <div class="cadastro-produto-container">
+    <div class="cadastro-categoria" id="altera-produto">
+        <div class="cadastro-categoria-container">
             <form id="formAlteraProduto">
                 <fieldset>
                     <span class="label-titulo">Alterar Produtos</span>
@@ -136,7 +141,7 @@
                     <input type="text" id="imagemAlteracao" placeholder="Imagem">
                     <label for="peso">Peso:</label>
                     <input type="number" id="pesoAlteracao" placeholder="Peso">
-                    <button class="btnCadastrar" id="btnAlteraProduto">Cadastrar</button>
+                    <button class="btnCadastrar" id="btnAlteraProduto">Alterar</button>
                 </fieldset>
             </form>
         </div>
