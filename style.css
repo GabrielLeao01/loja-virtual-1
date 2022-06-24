@@ -1,12 +1,18 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
 * {
     font-family: 'Roboto', sans-serif;
 }
+
 body {
     padding: 0;
     margin: 0;
     background-color: #E8F1F2;
+}
+
+table {
+    caption-side: bottom;
+    border-collapse: separate;
 }
 
 .nav {
@@ -82,7 +88,7 @@ body {
     width: 100%;
     padding-top: 0px;
     text-align: center;
-    position:fixed;
+    position: fixed;
     bottom: 0;
     background-color: #247BA0;
 }
@@ -91,18 +97,19 @@ body {
     width: 100%;
     padding: 20px;
     text-align: center;
-    position:relative;
+    position: relative;
     bottom: 0;
     background-color: #247BA0;
 }
 
-.cadastro-container{
+.cadastro-container {
     border-radius: 10px;
     padding-top: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .cadastro {
     padding: 20px 20px 20px 20px;
     border-radius: 10px;
@@ -110,6 +117,7 @@ body {
     align-items: center;
     background-color: #247BA0;
 }
+
 .cadastro input,
 select {
     margin-left: 5%;
@@ -121,7 +129,8 @@ select {
     display: flex;
     width: 500px;
 }
-.cadastro button{
+
+.cadastro button {
     margin-top: 5px;
     width: 20%;
     margin-left: 40%;
@@ -130,17 +139,20 @@ select {
     border: 2px solid black;
     border-radius: 10px;
 }
-.cadastro fieldset{
+
+.cadastro fieldset {
     border: 2px solid black;
     border-radius: 10px;
     margin-bottom: 10px;
     float: left;
 }
-.label-titulo{
+
+.label-titulo {
     margin-top: 20px;
     font-size: 24px;
     font-family: Helvetica, Arial, sans-serif;
 }
+
 .login input,
 select {
     margin-left: 0%;
@@ -148,12 +160,14 @@ select {
     height: 30px;
     border-radius: 10px;
 }
+
 .menu-produto {
     margin-top: -15px;
     background-color: #247BA0;
     padding: 5px;
 }
-.menu-produto li{
+
+.menu-produto li {
     margin-top: 10px;
     float: left;
     list-style: none;
@@ -161,12 +175,14 @@ select {
     margin-left: 20px;
     margin-top: 5px;
 }
-.menu-produto a{
+
+.menu-produto a {
     margin-right: 40px;
     color: inherit;
     text-decoration: none;
     font-size: 18px;
 }
+
 .pesquisa input[type=search] {
     border-radius: 10px;
     width: 40%;
@@ -179,6 +195,7 @@ select {
     height: 25px;
     border-radius: 10px;
 }
+
 .cadastro-produto {
     width: 100vw;
     height: 100vh;
@@ -188,6 +205,7 @@ select {
     justify-content: center;
     align-items: center;
 }
+
 .cadastro-produto-container {
     width: fit-content;
     height: fit-content;
@@ -195,13 +213,16 @@ select {
     border-radius: 10px;
     border: 2px solid black;
 }
+
 .cadastro-produto-container fieldset {
     border-radius: 10px;
     border: none;
     margin-bottom: 10px;
     float: left;
 }
-.cadastro-produto-container input, select {
+
+.cadastro-produto-container input,
+select {
     margin-left: 5%;
     margin-right: 5%;
     float: inline-end;
@@ -211,6 +232,7 @@ select {
     display: flex;
     width: 500px;
 }
+
 .cadastro-categoria {
     width: 100vw;
     background-color: #E8F1F2;
@@ -219,6 +241,7 @@ select {
     justify-content: center;
     align-items: center;
 }
+
 .cadastro-categoria-container {
     width: fit-content;
     height: fit-content;
@@ -226,13 +249,16 @@ select {
     border-radius: 10px;
     border: 2px solid black;
 }
+
 .cadastro-categoria-container fieldset {
     border-radius: 10px;
     border: none;
     margin-bottom: 10px;
     float: left;
 }
-.cadastro-categoria-container input, select {
+
+.cadastro-categoria-container input,
+select {
     margin-left: 5%;
     margin-right: 5%;
     float: inline-end;
@@ -243,13 +269,15 @@ select {
     width: 500px;
     font-style: bold;
 }
-.sobre h1{
+
+.sobre h1 {
     left: 41.7%;
     position: absolute;
     text-align: center;
 }
+
 .sobre p {
-    word-wrap:break-word;
+    word-wrap: break-word;
     width: 500px;
     text-align: center;
     background: #13293D;
@@ -262,84 +290,102 @@ select {
     margin-right: -50%;
     transform: translate(-50%, -50%)
 }
-.cartprod{
-    border:1px solid #247BA0;
+
+.cartprod {
+    border: 1px solid #247BA0;
 }
-.cartprod img,p{
-   display: inline-block;
-   align-items: center;
+
+.cartprod img,
+p {
+    display: inline-block;
+    align-items: center;
 }
-.cartprod-teste{
+
+.cartprod-teste {
     display: inline-block;
 }
+
 .cartprod span {
     display: flex;
 }
+
 .botoes-admin button {
     align-items: center;
     padding: 10px;
     border-radius: 5px;
-    margin: 2%;
+    margin: 1%;
     cursor: pointer;
     transition: all .7s;
     justify-content: center;
     display: inline;
 }
-.botoes-admin button:hover{
+
+.botoes-admin button:hover {
     background-color: #247BA0;
 }
+
 .lista-categoria {
     display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.lista-categoria td{
+
+.lista-categoria td {
     background-color: #E8F1F2;
     border-radius: 5px;
     padding: 5px;
 }
-.lista-categoria th{
+
+.lista-categoria th {
     background-color: #E8F1F2;
     border-radius: 5px;
     padding: 5px;
 }
-.lista-categoria tr{
-    background-color:#247BA0;
+
+.lista-categoria tr {
+    background-color: #247BA0;
     border-radius: 10px;
     padding: 5px;
 }
-.lista-categoria table{
+
+.lista-categoria table {
     background-color: #247BA0;
-    border-radius: 10px ;
+    border-radius: 10px;
     padding: 5px;
 }
+
 .lista-produto {
     display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.lista-produto td{
+
+.lista-produto td {
     background-color: #E8F1F2;
     border-radius: 5px;
     padding: 5px;
 }
-.lista-produto th{
+
+.lista-produto th {
     background-color: #E8F1F2;
     border-radius: 5px;
     padding: 5px;
 }
-.lista-produto tr{
-    background-color:#247BA0;
+
+.lista-produto tr {
+    background-color: #247BA0;
     border-radius: 10px;
     padding: 5px;
 }
-.lista-produto table{
+
+.lista-produto table {
     background-color: #247BA0;
-    border-radius: 10px ;
+    border-radius: 10px;
     padding: 5px;
 }
+
 .btnCadastrar {
     padding: 5px;
     background-color: #E8F1F2;
@@ -351,6 +397,7 @@ select {
     font-size: 20px;
     font-style: bold;
 }
+
 .cadastro-cliente {
     width: 100vw;
     height: 100vh;
@@ -360,6 +407,7 @@ select {
     justify-content: center;
     align-items: center;
 }
+
 .cadastro-cliente-container {
     width: fit-content;
     height: fit-content;
@@ -367,13 +415,16 @@ select {
     border-radius: 10px;
     border: 2px solid black;
 }
+
 .cadastro-cliente-container fieldset {
     border-radius: 10px;
     border: none;
     margin-bottom: 10px;
     float: left;
 }
-.cadastro-cliente-container input, select {
+
+.cadastro-cliente-container input,
+select {
     margin-left: 5%;
     margin-right: 5%;
     float: inline-end;
@@ -382,4 +433,13 @@ select {
     border-radius: 10px;
     display: flex;
     width: 500px;
+}
+
+.btn-tabela {
+    padding: 10px;
+    background-color:#E8F1F2;
+    border: none;
+    border-radius: 5px;
+    color: red;
+    margin-left: 2px;
 }
