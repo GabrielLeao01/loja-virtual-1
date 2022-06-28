@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Administração</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link href="style.css" rel="stylesheet">
 </head>
 
@@ -20,7 +21,7 @@
                 <li><a href="admin.html">Administração</a> </li>
                 <li><a href="contatos.html">Contatos</a></li>
             </ul>
-            
+
         </nav>
     </div>
     <div class="botoes-admin">
@@ -29,6 +30,7 @@
         <button id="cadastrarCategorias">Cadastrar Categorias</button>
         <button id="cadastrarProdutos">Cadastrar Itens</button>
     </div>
+
     <div class="cadastro-categoria" id="cadastro-produto">
         <div class="cadastro-categoria-container">
             <form id="formCadastroProduto">
@@ -86,10 +88,8 @@
                 <fieldset>
                     <span class="label-titulo">Alterar Categoria</span>
                     <br>
-                    <label for="cbCategoriaAlteracao">Categoria:</label>
-                    <br>
-                    <select id="cbCategoriaAlteracao">
-                    </select>
+                    <label for="nomeAlteraCategoria">Id:</label>
+                    <input type="text" id="idAlteraCategoria" placeholder="Id" readonly>
                     <label for="nomeAlteraCategoria">Nome:</label>
                     <input type="text" id="nomeAlteraCategoria" placeholder="Nome">
                     <button class="btnCadastrar" id="btnAlterarCategoria">Alterar</button>
@@ -103,9 +103,8 @@
                 <fieldset>
                     <span class="label-titulo">Alterar Produtos</span>
                     <br>
-                    <label for="cbIdAlteracao">Id:</label>
-                    <select id="cbIdAlteracao">
-                    </select>
+                    <label for="idAlteracao">ID:</label>
+                    <input type="text" id="idAlteracao" placeholder="ID" readonly>
                     <label for="codigo">Código:</label>
                     <input type="text" id="codigoAlteracao" placeholder="Código">
                     <label for="cbProdutoAlteracao">Categoria:</label>

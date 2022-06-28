@@ -165,22 +165,7 @@ select {
     margin-top: -15px;
     background-color: #247BA0;
     padding: 5px;
-}
-
-.menu-produto li {
-    margin-top: 10px;
-    float: left;
-    list-style: none;
-    display: inline;
-    margin-left: 20px;
-    margin-top: 5px;
-}
-
-.menu-produto a {
-    margin-right: 40px;
-    color: inherit;
-    text-decoration: none;
-    font-size: 18px;
+    text-align: center;
 }
 
 .pesquisa input[type=search] {
@@ -295,18 +280,21 @@ select {
     border: 1px solid #247BA0;
 }
 
-.cartprod img,
-p {
+.cartprod img {
     display: inline-block;
     align-items: center;
+    margin-top: -80px;
 }
 
-.cartprod-teste {
+.cartprod-conteudo {
+    padding: 5px;
     display: inline-block;
 }
 
 .cartprod span {
     display: flex;
+    font-size: 18px;
+    margin: 5px;
 }
 
 .botoes-admin button {
@@ -318,6 +306,7 @@ p {
     transition: all .7s;
     justify-content: center;
     display: inline;
+    text-align: center;
 }
 
 .botoes-admin button:hover {
@@ -437,9 +426,75 @@ select {
 
 .btn-tabela {
     padding: 10px;
-    background-color:#E8F1F2;
+    background-color: #E8F1F2;
     border: none;
     border-radius: 5px;
     color: red;
     margin-left: 2px;
 }
+
+.produtos h1 {
+    margin-top: -0px;
+    justify-content: center;
+    text-align: center;
+}
+.produtos img {
+    justify-content: right;
+}
+
+.carrinho {
+    display: flex;
+    margin-right: 20px;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.carrinho-container {
+    display: flex;
+    justify-content: right;
+}
+
+.carrinho img {
+    margin-left: 15px;
+}
+.carrinho span {
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 15px;
+}
+#menu-produtos{
+    display:block;
+}
+/*  .carta-container{
+    position: relative;
+    width: 150px;
+    height: 200px;
+    margin: 20px;
+}
+.carta-container:hover #carta{
+    transform: rotateY(180deg);
+}
+#carta {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    transform-style: preserve-3d;
+    transition: all 0.5s ease;
+}
+#frente {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    backface-visibility: hidden;
+    background-color: #13293D;
+}
+
+#atras {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    backface-visibility: hidden;
+    background-color:#510505;
+    transform: rotateY(180deg);
+}  */

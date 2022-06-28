@@ -4,9 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Produtos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link href="style.css" rel="stylesheet">
-    <script src="script.js"></script>
 </head>
+
 <body>
     <div class="nav">
         <nav>
@@ -18,26 +20,60 @@
                 <li><a href="sobre.html">Sobre nossa loja</a> </li>
                 <li><a href="admin.html">Administração</a> </li>
                 <li><a href="contatos.html">Contatos</a></li>
-                <li><a href="usuario.html">Usuário</a></li>
             </ul>
-        </nav> 
-    </div>
-    <div class="menu-produto">
-        <nav>
-            <div>
-                <ul>
-                    <li><a href="">Calçados</a></li>
-                    <li><a href="">Acessorios</a></li>
-                    <li><a href="">Camisas de time</a></li>
-                </ul>
-            </div>
-            <div class="pesquisa">
-                <input type="search" placeholder="Pesquise aqui seu produto...">
-                <button>Buscar</button>
-            </div>
         </nav>
     </div>
-   
+    <div class="produtos">
+        <h1 id="tituloPagina" class="page-title">Produtos</h1>
+    </div>
+    <div class="carrinho-container">
+        <div class="carrinho" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <span id="quantidade-produtos"></span>
+            <img id="imagemm" src="/bootstrap-icons-1.8.3/cart4.svg" width="30px" onclick="mostrarCarrinho()">
+        </div>
+    </div>
+    <div id="menu-produtos">
+        <div>
+            <select id="combo-categoria" onchange="listarProdutos(this.value)"></select>
+            <div id="card-produtos">
+            </div>
+        </div>
+    </div>
+    <div id="menu-carrinho">
+        <div id="card-carrinho">
+        </div>
+        <div id="finalizar-compra">
+        </div>
+    </div>
+    <!--     <div class="carta-container">
+        <div id="carta">
+            <div id="frente">
+
+            </div>
+            <div id="atras">
+
+            </div>
+        </div>
+    </div>
+    <div class="carta-container">
+        <div id="carta">
+            <div id="frente">
+            </div>
+            <div id="atras">
+            </div>
+        </div>
+    </div>
+    <div class="carta-container">
+        <div id="carta">
+            <div id="frente">
+
+            </div>
+            <div id="atras">
+
+            </div>
+        </div>
+    </div> -->
 </body>
+<script type="text/javascript" src="/js/produtos.js"></script>
 
 </html>
