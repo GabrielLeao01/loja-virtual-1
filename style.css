@@ -463,8 +463,15 @@ select {
     font-weight: bold;
     margin-left: 15px;
 }
+
 #menu-produtos{
     display:block;
+}
+
+#card-finalizar-compra{
+    margin-left: 20px;
+    padding: 20px;
+    border: 1px solid #247BA0;
 }
 /*  .carta-container{
     position: relative;
