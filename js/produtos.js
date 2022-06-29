@@ -141,7 +141,8 @@ function mostrarCarrinho() {
     document.getElementById('menu-produtos').style.display = 'none'
     document.getElementById('tituloPagina').innerText = 'Carrinho'
     document.getElementById('quantidade-produtos').innerText = ''
-    document.getElementById('menu-carrinho').style.display = 'flex'
+    document.getElementById('menu-carrinho').style.display = 'grid'
+    document.getElementById('card-finalizar-compra').style.display = 'grid'
 
     let img = document.getElementById('imagemm')
 
@@ -189,7 +190,7 @@ function mostrarCarrinho() {
         input.setAttribute('type', 'number')
         input.setAttribute('id', 'qtd-carrinho')
         input.setAttribute('value', '' + e.quantidade)
-        input.setAttribute('onblur', 'atualizarQuantidade(' + JSON.stringify(e) + ')')
+        input.setAttribute('onfocusout', 'atualizarQuantidade(' + JSON.stringify(e) + ')')
 
         let label = document.createElement('label')
         label.setAttribute('for', 'qtd-carrinho')
@@ -202,7 +203,7 @@ function mostrarCarrinho() {
 
     let cardFinalizarCompra = document.getElementById('card-finalizar-compra')
     let h2 = document.createElement('h2')
-    h2.innerText = 'SubTotal'
+    h2.innerText = 'Subtotal'
     cardFinalizarCompra.appendChild(h2)
 
     let span = document.createElement('span')
@@ -215,6 +216,12 @@ function mostrarCarrinho() {
     span.innerText = 'Preço total: ' + (precoFinal * 1).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
     cardFinalizarCompra.appendChild(span)
 
+    button = document.createElement('button')
+    button.setAttribute('class', 'btn btn-primary')
+    button.innerText ='Finalizar Compra'
+
+    cardFinalizarCompra.appendChild(button)
+
 }
 
 function mostrarProdutos() {
@@ -222,8 +229,11 @@ function mostrarProdutos() {
     document.getElementById('tituloPagina').innerText = 'Produtos'
     document.getElementById('quantidade-produtos').innerText = qtd
     document.getElementById('menu-carrinho').style.display = 'none'
+    document.getElementById('card-finalizar-compra').style.display = 'none'
+
     atualizarCarrinho()
     document.getElementById('quantidade-produtos').innerText = qtd
+
     let img = document.getElementById('imagemm')
     img.setAttribute('src', "/bootstrap-icons-1.8.3/cart4.svg")
     img.setAttribute('onclick', 'mostrarCarrinho()')
