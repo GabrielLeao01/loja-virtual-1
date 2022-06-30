@@ -435,11 +435,11 @@ function excluirCategorias(id) {
                         location.reload()
                     }
                     else {
-                        
+
                     }
                 }
             }
-            else{
+            else {
                 alert("Só é possivel remover categorias quando não há produtos!")
             }
         }
@@ -451,31 +451,135 @@ function excluirCategorias(id) {
 
 document.getElementById('listarPedidos').addEventListener('click', () => {
     event.preventDefault()
+    var listaProdutos = request.response.dados
+    var tabelaProdutos = document.getElementById('tabelaProdutos')
 
+    limparTabelas()
+    esconderTabelas()
+
+    let tr = document.createElement('tr')
+    let th = document.createElement('th')
+
+    tabelaProdutos.appendChild(tr)
+    th.innerText = 'Id'
+    tr.appendChild(th)
+
+    th = document.createElement('th')
+    th.innerText = 'Código'
+    tr.appendChild(th)
+
+    th = document.createElement('th')
+    th.innerText = 'Categoria'
+    tr.appendChild(th)
+
+    th = document.createElement('th')
+    th.innerText = 'Nome'
+    tr.appendChild(th)
+
+    th = document.createElement('th')
+    th.innerText = 'Descrição'
+    tr.appendChild(th)
+
+    th = document.createElement('th')
+    th.innerText = 'Preço'
+    tr.appendChild(th)
+
+    th = document.createElement('th')
+    th.innerText = 'Imagem'
+    tr.appendChild(th)
+
+    th = document.createElement('th')
+    th.innerText = 'Peso'
+    tr.appendChild(th)
+
+    listaProdutos.forEach(e => {
+        console.log(JSON.stringify(e.imagem))
+        tr = document.createElement('tr')
+        tabelaProdutos.appendChild(tr)
+        let td = document.createElement('td')
+        td.innerText = e.id
+        tr.appendChild(td)
+
+        td = document.createElement('td')
+        td.innerText = e.codigo
+        tr.appendChild(td)
+
+        td = document.createElement('td')
+        td.innerText = e.categoria
+        tr.appendChild(td)
+
+        td = document.createElement('td')
+        td.innerText = e.nome
+        tr.appendChild(td)
+
+        td = document.createElement('td')
+        td.innerText = e.descricao
+        tr.appendChild(td)
+
+        td = document.createElement('td')
+        td.innerText = (e.preco * 1).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
+        tr.appendChild(td)
+
+        td = document.createElement('td')
+        let img = document.createElement('img')
+        img.setAttribute('src', e.imagem)
+        img.setAttribute('width', "100")
+        td.appendChild(img)
+        tr.appendChild(td)
+
+        td = document.createElement('td')
+        td.innerText = e.peso + 'g'
+        tr.appendChild(td)
+
+        let btn = document.createElement('button')
+        btn.setAttribute("id", 'teste')
+        btn.setAttribute("class", 'btn-tabela')
+        btn.setAttribute('onclick', "excluirProdutos(" + e.id + ')')
+
+        img = document.createElement('img')
+        img.setAttribute("src", "/bootstrap-icons-1.8.3/x-square-fill.svg")
+        img.setAttribute("width", '15')
+        img.setAttribute("color", 'red')
+
+        btn.appendChild(img)
+        tr.appendChild(btn)
+
+        btn = document.createElement('button')
+        btn.setAttribute("id", 'alterar')
+        btn.setAttribute("class", 'btn-tabela')
+        btn.setAttribute("onclick", "alterarProdutos(" + JSON.stringify(e) + ")")
+
+        img = document.createElement('img')
+        img.setAttribute("src", "/bootstrap-icons-1.8.3/pencil-fill.svg")
+        img.setAttribute("width", '15')
+
+        btn.appendChild(img)
+        tr.appendChild(btn)
+    })
+    document.getElementById('lista-produto').style.display = "flex"
 })
 
+String.prototype.reverse = function () {
+    return this.split('').reverse().join('');
+};
 
-String.prototype.reverse = function(){
-    return this.split('').reverse().join(''); 
-  };
-  
-  function mascaraMoeda(campo,evento){
+function mascaraMoeda(campo, evento) {
     var tecla = (!evento) ? window.event.keyCode : evento.which;
-    var valor  =  campo.value.replace(/[^\d]+/gi,'').reverse();
-    var resultado  = "";
+    var valor = campo.value.replace(/[^\d]+/gi, '').reverse();
+    var resultado = "";
     var mascara = "##.###.###,##".reverse();
-    for (var x=0, y=0; x<mascara.length && y<valor.length;) {
-      if (mascara.charAt(x) != '#') {
-        resultado += mascara.charAt(x);
-        x++;
-      } else {
-        resultado += valor.charAt(y);
-        y++;
-        x++;
-      }
+    for (var x = 0, y = 0; x < mascara.length && y < valor.length;) {
+        if (mascara.charAt(x) != '#') {
+            resultado += mascara.charAt(x);
+            x++;
+        } else {
+            resultado += valor.charAt(y);
+            y++;
+            x++;
+        }
     }
     campo.value = resultado.reverse();
-  }
+}
 
 function carregarCbCategoria(id) {
     url = "http://loja.buiar.com/?key=rbqz3d&f=json&c=categoria&t=listar"
@@ -508,5 +612,5 @@ function esconderTabelas() {
     document.getElementById('cadastro-categoria').style.display = "none"
     document.getElementById('altera-produto').style.display = 'none'
     document.getElementById('altera-categoria').style.display = 'none'
-    document.getElementById('listar-pedido').style.display = 'none'
+    document.getElementById('lista-pedido').style.display = 'none'
 }
