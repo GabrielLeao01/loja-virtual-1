@@ -352,6 +352,7 @@ document.getElementById('cadastrarCategorias').addEventListener('click', () => {
 
 document.getElementById('cadastrarProdutos').addEventListener('click', () => {
     event.preventDefault()
+    document.getElementById('cbCategoria').innerText = ''
     carregarCbCategoria('cbCategoria')
     limparTabelas()
     esconderTabelas()
@@ -360,6 +361,7 @@ document.getElementById('cadastrarProdutos').addEventListener('click', () => {
 
 function alterarProdutos(e) {
     esconderTabelas()
+    document.getElementById('cbProdutoAlteracao').innerText = ''
     carregarCbCategoria('cbProdutoAlteracao')
     document.getElementById('altera-produto').style.display = 'flex'
     document.getElementById('idAlteracao').value = e.id
@@ -446,6 +448,28 @@ function excluirCategorias(id) {
         }
     }
 }
+
+String.prototype.reverse = function(){
+    return this.split('').reverse().join(''); 
+  };
+  
+  function mascaraMoeda(campo,evento){
+    var tecla = (!evento) ? window.event.keyCode : evento.which;
+    var valor  =  campo.value.replace(/[^\d]+/gi,'').reverse();
+    var resultado  = "";
+    var mascara = "##.###.###,##".reverse();
+    for (var x=0, y=0; x<mascara.length && y<valor.length;) {
+      if (mascara.charAt(x) != '#') {
+        resultado += mascara.charAt(x);
+        x++;
+      } else {
+        resultado += valor.charAt(y);
+        y++;
+        x++;
+      }
+    }
+    campo.value = resultado.reverse();
+  }
 
 function carregarCbCategoria(id) {
     url = "http://loja.buiar.com/?key=rbqz3d&f=json&c=categoria&t=listar"

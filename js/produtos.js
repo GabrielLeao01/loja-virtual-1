@@ -152,6 +152,7 @@ function mostrarCarrinho() {
     let cardCarrinho = document.getElementById('card-carrinho')
     cardCarrinho.innerText = ''
     console.log(carrinho)
+
     carrinho.forEach(e => {
         let div = document.createElement('div')
         div.setAttribute('class', 'cartprod')
@@ -218,6 +219,7 @@ function mostrarCarrinho() {
 
     button = document.createElement('button')
     button.setAttribute('class', 'btn btn-primary')
+    button.setAttribute('onclick', 'finalizarCompra()')
     button.innerText ='Finalizar Compra'
 
     cardFinalizarCompra.appendChild(button)
@@ -258,4 +260,8 @@ function atualizarCarrinho() {
         precoFinal += (carrinho[i].quantidade * carrinho[i].preco)
     }
 
+}
+function finalizarCompra() {
+    localStorage.setItem('carrinho', JSON.stringify(carrinho))
+    window.location.href = "http://127.0.0.1:5500/cadastro.html";
 }
