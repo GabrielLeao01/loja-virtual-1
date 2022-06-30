@@ -30,6 +30,7 @@
             <button id="listarProdutos">Listar Itens</button>
             <button id="cadastrarCategorias">Cadastrar Categorias</button>
             <button id="cadastrarProdutos">Cadastrar Itens</button>
+            <button id="listarPedidos">Listar Pedidos</button>
         </div>
     </div>
         
@@ -127,31 +128,11 @@
             </form>
         </div>
     </div>
-    <div class="cadastro-categoria" id="excluir-categoria">
-        <div class="cadastro-categoria-container">
-            <form id="formExcluirCategoria">
-                <fieldset>
-                    <label for="cbCategoriaExclusao">Categoria:</label>
-                    <br>
-                    <select id="cbCategoriaExclusao">
-                    </select>
-                    <button class="btnCadastrar" id="btnExcluirCategoria">Excluir</button>
-                </fieldset>
-            </form>
-        </div>
-    </div>
-    <div class="cadastro-categoria" id="excluir-produto">
-        <div class="cadastro-categoria-container">
-            <form id="formExcluirProduto">
-                <fieldset>
-                    <label for="cbProdutoExclusao">Produto:</label>
-                    <br>
-                    <select id="cbProdutoExclusao">
-                    </select>
-                    <button class="btnCadastrar" id="btnExcluirProduto">Excluir</button>
-                </fieldset>
-            </form>
-        </div>
+    <div class="lista-pedido" id="lista-pedido">
+        <span class="label-titulo">Pedido(s)</span>
+        <br>
+        <table id="tabelaProdutos">
+        </table>
     </div>
 </body>
 <script type="text/javascript" src="/js/admin.js"></script>

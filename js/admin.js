@@ -287,7 +287,7 @@ document.getElementById('btnAlteraProduto').addEventListener('click', () => {
         params += '&descricao=' + descricao.value
     }
     if (preco.value != '') {
-        params += '&preco=' + preco.value
+        params += '&preco=' + preco.value.replace(/\D/g, "");
     }
     if (imagem.value != '') {
         params += '&imagem=' + imagem.value
@@ -449,6 +449,12 @@ function excluirCategorias(id) {
     }
 }
 
+document.getElementById('listarPedidos').addEventListener('click', () => {
+    event.preventDefault()
+
+})
+
+
 String.prototype.reverse = function(){
     return this.split('').reverse().join(''); 
   };
@@ -502,4 +508,5 @@ function esconderTabelas() {
     document.getElementById('cadastro-categoria').style.display = "none"
     document.getElementById('altera-produto').style.display = 'none'
     document.getElementById('altera-categoria').style.display = 'none'
+    document.getElementById('listar-pedido').style.display = 'none'
 }
