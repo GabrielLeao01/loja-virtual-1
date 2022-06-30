@@ -540,6 +540,14 @@ select {
     border-radius: 10px;
     padding: 5px;
 }
+.pedidos h1 {
+    margin-top: -0px;
+    justify-content: center;
+    text-align: center;
+}
+#card-pedidos {
+    margin: 20px;
+}
 /*  .carta-container{
     position: relative;
     width: 150px;
