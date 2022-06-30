@@ -233,7 +233,7 @@ document.getElementById('btnCadastroProduto').addEventListener('click', () => {
         params += '&descricao=' + descricao.value
     }
     if (preco.value != '') {
-        params += '&preco=' + preco.value.replace(/\D/g, "");
+        params += '&preco=' + preco.value.replace(".", "").replace(",", ".")
     }
     if (imagem.value != '') {
         params += '&imagem=' + imagem.value
@@ -262,7 +262,6 @@ document.getElementById('btnAlteraProduto').addEventListener('click', () => {
     event.preventDefault()
     let id = document.getElementById('idAlteracao')
     let codigo = document.getElementById('codigoAlteracao')
-    let cbCategoria = document.getElementById('cbProdutoAlteracao')
     let nome = document.getElementById('nomeAlteracao')
     let descricao = document.getElementById('descricaoAlteracao')
     let preco = document.getElementById('precoAlteracao')
@@ -280,14 +279,11 @@ document.getElementById('btnAlteraProduto').addEventListener('click', () => {
     if (codigo.value != '') {
         params += '&codigo=' + codigo.value
     }
-    if (cbCategoria.value != '') {
-        params += '&categoria=' + cbCategoria.value
-    }
     if (descricao.value != '') {
         params += '&descricao=' + descricao.value
     }
     if (preco.value != '') {
-        params += '&preco=' + preco.value.replace(/\D/g, "");
+        params += '&preco=' + preco.value.replace(".", "").replace(",", ".")
     }
     if (imagem.value != '') {
         params += '&imagem=' + imagem.value
@@ -361,13 +357,10 @@ document.getElementById('cadastrarProdutos').addEventListener('click', () => {
 
 function alterarProdutos(e) {
     esconderTabelas()
-    document.getElementById('cbProdutoAlteracao').innerText = ''
-    carregarCbCategoria('cbProdutoAlteracao')
     document.getElementById('altera-produto').style.display = 'flex'
     document.getElementById('idAlteracao').value = e.id
     document.getElementById('codigoAlteracao').value = e.codigo
     document.getElementById('nomeAlteracao').value = e.nome
-    document.getElementById('cbProdutoAlteracao').value = e.categoria
     document.getElementById('descricaoAlteracao').value = e.descricao
     document.getElementById('precoAlteracao').value = e.preco
     document.getElementById('imagemAlteracao').value = e.imagem
@@ -405,7 +398,6 @@ function excluirProdutos(id) {
 }
 
 function excluirCategorias(id) {
-    console.log('chegou')
     let url = "http://loja.buiar.com/?key=rbqz3d&f=json&c=produto&t=listar"
     let params = ""
     if (id != '') {
@@ -451,135 +443,117 @@ function excluirCategorias(id) {
 
 document.getElementById('listarPedidos').addEventListener('click', () => {
     event.preventDefault()
-    var listaProdutos = request.response.dados
-    var tabelaProdutos = document.getElementById('tabelaProdutos')
+    let url = "http://loja.buiar.com/?key=rbqz3d&f=json&c=pedido&t=listar"
+    request.open('GET', url);
+    request.responseType = 'json';
+    request.send()
+    request.onload = () => {
+        if (request.readyState == 4 && request.status == 200) {
+            var listaPedidos = request.response.dados
+            var tabelaPedidos = document.getElementById('tabelaPedidos')
 
-    limparTabelas()
-    esconderTabelas()
+            limparTabelas()
+            esconderTabelas()
 
-    let tr = document.createElement('tr')
-    let th = document.createElement('th')
+            let tr = document.createElement('tr')
+            let th = document.createElement('th')
 
-    tabelaProdutos.appendChild(tr)
-    th.innerText = 'Id'
-    tr.appendChild(th)
+            tabelaPedidos.appendChild(tr)
+            th.innerText = 'Id'
+            tr.appendChild(th)
 
-    th = document.createElement('th')
-    th.innerText = 'Código'
-    tr.appendChild(th)
+            th = document.createElement('th')
+            th.innerText = 'Data'
+            tr.appendChild(th)
 
-    th = document.createElement('th')
-    th.innerText = 'Categoria'
-    tr.appendChild(th)
+            th = document.createElement('th')
+            th.innerText = 'Nome'
+            tr.appendChild(th)
 
-    th = document.createElement('th')
-    th.innerText = 'Nome'
-    tr.appendChild(th)
+            th = document.createElement('th')
+            th.innerText = 'Cpf'
+            tr.appendChild(th)
 
-    th = document.createElement('th')
-    th.innerText = 'Descrição'
-    tr.appendChild(th)
+            th = document.createElement('th')
+            th.innerText = 'Cep'
+            tr.appendChild(th)
 
-    th = document.createElement('th')
-    th.innerText = 'Preço'
-    tr.appendChild(th)
+            th = document.createElement('th')
+            th.innerText = 'Rua'
+            tr.appendChild(th)
 
-    th = document.createElement('th')
-    th.innerText = 'Imagem'
-    tr.appendChild(th)
+            th = document.createElement('th')
+            th.innerText = 'Numero'
+            tr.appendChild(th)
 
-    th = document.createElement('th')
-    th.innerText = 'Peso'
-    tr.appendChild(th)
+            th = document.createElement('th')
+            th.innerText = 'Complemento'
+            tr.appendChild(th)
+            th = document.createElement('th')
+            th.innerText = 'Bairro'
+            tr.appendChild(th)
 
-    listaProdutos.forEach(e => {
-        console.log(JSON.stringify(e.imagem))
-        tr = document.createElement('tr')
-        tabelaProdutos.appendChild(tr)
-        let td = document.createElement('td')
-        td.innerText = e.id
-        tr.appendChild(td)
+            th = document.createElement('th')
+            th.innerText = 'Cidade'
+            tr.appendChild(th)
 
-        td = document.createElement('td')
-        td.innerText = e.codigo
-        tr.appendChild(td)
+            th = document.createElement('th')
+            th.innerText = 'Uf'
+            tr.appendChild(th)
 
-        td = document.createElement('td')
-        td.innerText = e.categoria
-        tr.appendChild(td)
+            listaPedidos.forEach(e => {
+                console.log(JSON.stringify(e.imagem))
+                tr = document.createElement('tr')
+                tabelaPedidos.appendChild(tr)
+                let td = document.createElement('td')
+                td.innerText = e.id
+                tr.appendChild(td)
 
-        td = document.createElement('td')
-        td.innerText = e.nome
-        tr.appendChild(td)
+                td = document.createElement('td')
+                td.innerText = e.time
+                tr.appendChild(td)
 
-        td = document.createElement('td')
-        td.innerText = e.descricao
-        tr.appendChild(td)
+                td = document.createElement('td')
+                td.innerText = e.nome
+                tr.appendChild(td)
 
-        td = document.createElement('td')
-        td.innerText = (e.preco * 1).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
-        tr.appendChild(td)
+                td = document.createElement('td')
+                td.innerText = e.cpf
+                tr.appendChild(td)
 
-        td = document.createElement('td')
-        let img = document.createElement('img')
-        img.setAttribute('src', e.imagem)
-        img.setAttribute('width', "100")
-        td.appendChild(img)
-        tr.appendChild(td)
+                td = document.createElement('td')
+                td.innerText = e.cep
+                tr.appendChild(td)
 
-        td = document.createElement('td')
-        td.innerText = e.peso + 'g'
-        tr.appendChild(td)
+                td = document.createElement('td')
+                td.innerText = e.rua
+                tr.appendChild(td)
 
-        let btn = document.createElement('button')
-        btn.setAttribute("id", 'teste')
-        btn.setAttribute("class", 'btn-tabela')
-        btn.setAttribute('onclick', "excluirProdutos(" + e.id + ')')
+                td = document.createElement('td')
+                td.innerText = e.numero
+                tr.appendChild(td)
 
-        img = document.createElement('img')
-        img.setAttribute("src", "/bootstrap-icons-1.8.3/x-square-fill.svg")
-        img.setAttribute("width", '15')
-        img.setAttribute("color", 'red')
+                td = document.createElement('td')
+                td.innerText = e.complemento
+                tr.appendChild(td)
 
-        btn.appendChild(img)
-        tr.appendChild(btn)
+                td = document.createElement('td')
+                td.innerText = e.bairro
+                tr.appendChild(td)
 
-        btn = document.createElement('button')
-        btn.setAttribute("id", 'alterar')
-        btn.setAttribute("class", 'btn-tabela')
-        btn.setAttribute("onclick", "alterarProdutos(" + JSON.stringify(e) + ")")
+                td = document.createElement('td')
+                td.innerText = e.cidade
+                tr.appendChild(td)
 
-        img = document.createElement('img')
-        img.setAttribute("src", "/bootstrap-icons-1.8.3/pencil-fill.svg")
-        img.setAttribute("width", '15')
+                td = document.createElement('td')
+                td.innerText = e.uf
+                tr.appendChild(td)
 
-        btn.appendChild(img)
-        tr.appendChild(btn)
-    })
-    document.getElementById('lista-produto').style.display = "flex"
-})
-
-String.prototype.reverse = function () {
-    return this.split('').reverse().join('');
-};
-
-function mascaraMoeda(campo, evento) {
-    var tecla = (!evento) ? window.event.keyCode : evento.which;
-    var valor = campo.value.replace(/[^\d]+/gi, '').reverse();
-    var resultado = "";
-    var mascara = "##.###.###,##".reverse();
-    for (var x = 0, y = 0; x < mascara.length && y < valor.length;) {
-        if (mascara.charAt(x) != '#') {
-            resultado += mascara.charAt(x);
-            x++;
-        } else {
-            resultado += valor.charAt(y);
-            y++;
-            x++;
+            })
+            document.getElementById('lista-pedido').style.display = "flex"
         }
     }
-    campo.value = resultado.reverse();
-}
+})
 
 function carregarCbCategoria(id) {
     url = "http://loja.buiar.com/?key=rbqz3d&f=json&c=categoria&t=listar"
@@ -603,6 +577,7 @@ function carregarCbCategoria(id) {
 function limparTabelas() {
     tabelaCategorias.innerText = ''
     tabelaProdutos.innerText = ''
+    tabelaPedidos.innerText = ''
 }
 
 function esconderTabelas() {
