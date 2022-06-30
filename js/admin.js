@@ -233,7 +233,7 @@ document.getElementById('btnCadastroProduto').addEventListener('click', () => {
         params += '&descricao=' + descricao.value
     }
     if (preco.value != '') {
-        params += '&preco=' + preco.value
+        params += '&preco=' + preco.value.replace(/\D/g, "");
     }
     if (imagem.value != '') {
         params += '&imagem=' + imagem.value
