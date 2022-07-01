@@ -549,12 +549,68 @@ document.getElementById('listarPedidos').addEventListener('click', () => {
                 td.innerText = e.uf
                 tr.appendChild(td)
 
+
+                let btn = document.createElement('button')
+                btn.setAttribute("id", 'teste')
+                btn.setAttribute("class", 'btn-tabela')
+                btn.setAttribute('onclick', "excluirPedido(" + e.id + ')')
+
+                img = document.createElement('img')
+                img.setAttribute("src", "/bootstrap-icons-1.8.3/x-square-fill.svg")
+                img.setAttribute("width", '15')
+                img.setAttribute("color", 'red')
+
+                btn.appendChild(img)
+                tr.appendChild(btn)
             })
             document.getElementById('lista-pedido').style.display = "flex"
         }
     }
 })
 
+function excluirPedido(id) {
+    let url = "http://loja.buiar.com/?key=rbqz3d&f=json&c=item&t=listar"
+    let params = ""
+    if (id != '') {
+        params += '&id=' + id
+    }
+    console.log(url + params)
+    request.open('POST', url);
+    request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+    request.responseType = 'json';
+    request.send(params)
+    request.onload = () => {
+        if (request.readyState == 4 && request.status == 200) {
+            resultado = request.response.dados
+            console.log(resultado)
+            resultado.forEach(e => {
+                url = "http://loja.buiar.com/?key=rbqz3d&f=json&c=item&t=remover"
+                params += '&id=' + e.id
+                console.log(url + params)
+                request.open('POST', url);
+                request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+                request.responseType = 'json';
+                request.send(params)
+                request.onload = function () {
+                    console.log('removeu item')
+                }
+            })
+            if (resultado.length == 0) {
+                url = "http://loja.buiar.com/?key=rbqz3d&f=json&c=pedido&t=remover"
+                params += '&id=' + id
+                console.log(url + params)
+                request.open('POST', url);
+                request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+                request.responseType = 'json';
+                request.send(params)
+                request.onload = function () {
+                    alert('Pedido removido com sucesso!')
+                    location.reload()
+                }
+            }
+        }
+    }
+}
 function carregarCbCategoria(id) {
     url = "http://loja.buiar.com/?key=rbqz3d&f=json&c=categoria&t=listar"
     request.open('GET', url);

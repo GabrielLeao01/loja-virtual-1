@@ -78,6 +78,12 @@ function listarProdutos(id) {
                 span = document.createElement('span')
                 span.innerText = 'Descrição: ' + e.descricao
                 divConteudo.appendChild(span)
+
+                let button = document.createElement('button')
+                button.setAttribute('class', 'btn btn-primary')
+                button.setAttribute('onclick', 'adicionarCarrinho(' + e.id + ')')
+                button.innerText = 'Adicionar ao carrinho'
+                divConteudo.appendChild(button)
             });
         }
     }
@@ -152,8 +158,10 @@ function mostrarCarrinho() {
     let cardCarrinho = document.getElementById('card-carrinho')
     cardCarrinho.innerText = ''
     console.log(carrinho)
-
+    let i = 0;
+    
     carrinho.forEach(e => {
+        console.log(i)
         let div = document.createElement('div')
         div.setAttribute('class', 'cartprod')
         cardCarrinho.appendChild(div)
@@ -180,7 +188,7 @@ function mostrarCarrinho() {
         span = document.createElement('span')
         span.innerText = 'Peso: ' + e.peso + 'g'
         divConteudo.appendChild(span)
- 
+
         span = document.createElement('span')
         span.innerText = 'Descrição: ' + e.descricao
         divConteudo.appendChild(span)
@@ -189,17 +197,19 @@ function mostrarCarrinho() {
         let input = document.createElement('input')
         input.setAttribute('class', 'input-quantidade')
         input.setAttribute('type', 'number')
-        input.setAttribute('id', 'qtd-carrinho')
+        input.setAttribute('min', '0')
+        input.setAttribute('id', 'qtd-carrinho' + i)
         input.setAttribute('value', '' + e.quantidade)
         input.setAttribute('onfocusout', 'atualizarQuantidade(' + JSON.stringify(e) + ')')
 
         let label = document.createElement('label')
         label.setAttribute('for', 'qtd-carrinho')
         label.innerText = "Quantidade: "
-        
+
         span.appendChild(label)
         span.appendChild(input)
         divConteudo.appendChild(span)
+        i++
     });
 
     let cardFinalizarCompra = document.getElementById('card-finalizar-compra')
@@ -220,7 +230,7 @@ function mostrarCarrinho() {
     button = document.createElement('button')
     button.setAttribute('class', 'btn btn-primary')
     button.setAttribute('onclick', 'finalizarCompra()')
-    button.innerText ='Finalizar Compra'
+    button.innerText = 'Finalizar Compra'
 
     cardFinalizarCompra.appendChild(button)
 
@@ -243,13 +253,20 @@ function mostrarProdutos() {
 }
 
 function atualizarQuantidade(e) {
+    console.log(e)
     let key = carrinho.findIndex(item => item.id == e.id)
     if (key > -1) {
-        carrinho[key].quantidade = document.getElementById('qtd-carrinho').value
+        console.log(carrinho[key])
+        carrinho[key].quantidade = document.getElementById('qtd-carrinho'+[key]).value
     }
     atualizarCarrinho()
     document.getElementById('quantidade-total').innerText = 'Quantidade de itens: ' + qtd
     document.getElementById('preco-total').innerText = 'Preço Total: ' + (precoFinal * 1).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
+    
+    if (carrinho[key].quantidade == 0) {
+        carrinho.splice(key, 1)
+        mostrarCarrinho()
+    }
 }
 
 function atualizarCarrinho() {
