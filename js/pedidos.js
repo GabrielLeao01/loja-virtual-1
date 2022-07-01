@@ -151,7 +151,7 @@ function exibirDetalhesPedido(id) {
                 divConteudo.appendChild(span)
 
                 span = document.createElement('span')
-                span.innerText = 'Pedido: ' +  e.produto
+                span.innerText = 'Produto: ' +  e.produto
                 divConteudo.appendChild(span)
 
                 span = document.createElement('span')
