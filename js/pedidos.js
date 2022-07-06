@@ -66,7 +66,7 @@ function listarPedido(id) {
                 divConteudo.appendChild(span)
 
                 span = document.createElement('span')
-                span.innerText = 'Cep: ' + e.cep
+                span.innerText = 'Cep: ' + formatarCep(e.cep)
                 divConteudo.appendChild(span)
 
                 span = document.createElement('span')
@@ -110,6 +110,10 @@ function listarPedido(id) {
 
 function gerarBoleto(id) {
     window.open("http://loja.buiar.com/?key=aula&c=boleto&t=listar&id=" + id)
+}
+
+function formatarCep(cep){
+    return cep.substring(0, 5) + '-' + cep.substring(5,9)
 }
 
 function exibirDetalhesPedido(id) {
