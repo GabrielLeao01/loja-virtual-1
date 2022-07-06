@@ -62,16 +62,16 @@ document.getElementById('btnCadastrarCliente').addEventListener('click', () => {
             console.log(params)
         }
     }
-    if(document.getElementById('cpf')){
+    if (document.getElementById('cpf')) {
         let cpf = document.getElementById('cpf').value.replace(/\D/g, "");
         params += '&cpf=' + cpf
     }
-    if(document.getElementById('cep')){
+    if (document.getElementById('cep')) {
         let cep = document.getElementById('cep').value.replace(/\D/g, "");
-        params +='&cep=' + cep
+        params += '&cep=' + cep
     }
-    if(document.getElementById('comp')){
-        params +='&complemento=' + document.getElementById('comp').value
+    if (document.getElementById('comp')) {
+        params += '&complemento=' + document.getElementById('comp').value
     }
 
     console.log(url + params)
@@ -90,20 +90,29 @@ document.getElementById('btnCadastrarCliente').addEventListener('click', () => {
 
 })
 
-function finalizarPedido(){
-    let carrinho = JSON.parse(localStorage.getItem('carrinho'))
+function finalizarPedido() {
+    var carrinho = JSON.parse(localStorage.getItem('carrinho'))
     let url = "http://loja.buiar.com/?key=rbqz3d&f=json&c=item&t=inserir"
-    carrinho.forEach(e => {
-        let params = '&pedido=' + localStorage.getItem('idPedido') + '&produto=' + e.id + '&qtd=' + e.quantidade
-        console.log(url + params)
+    var i = 0;
+    adicionarPedido()
+    function adicionarPedido() {
+        if (i >= carrinho.length) {
+            alert('pedido Realizado com sucesso');
+            window.location.href = 'http://127.0.0.1:5500/pedidos.html'
+            return;
+        }
+        let params = '&pedido=' + localStorage.getItem('idPedido') + '&produto=' + carrinho[i].id + '&qtd=' + carrinho[i].quantidade
+        console.log(params)
         request.open('POST', url);
         request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
         request.responseType = 'json';
         request.send(params)
         request.onload = function () {
             if (request.readyState == 4 && request.status == 200) {
-                alert("Pedido realizado com sucesso!")
+                    i++;
+                    console.log('depois' + i)
+                    adicionarPedido();
             }
         }
-    });
+    }
 }

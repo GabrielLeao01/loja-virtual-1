@@ -583,19 +583,29 @@ function excluirPedido(id) {
         if (request.readyState == 4 && request.status == 200) {
             resultado = request.response.dados
             console.log(resultado)
-            resultado.forEach(e => {
+            removerItem()
+            function removerItem() {
+                if (resultado.length == 0) {
+                    removerPedido()
+                    return
+                }
                 url = "http://loja.buiar.com/?key=rbqz3d&f=json&c=item&t=remover"
-                params += '&id=' + e.id
+                params += '&id=' + resultado[0].id
                 console.log(url + params)
                 request.open('POST', url);
                 request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
                 request.responseType = 'json';
                 request.send(params)
                 request.onload = function () {
-                    console.log('removeu item')
+                    if (request.readyState == 4 && request.status == 200) {
+                    console.log('removeuitem')
+                    console.log(resultado.length)
+                    excluirPedido()
+                    }
                 }
-            })
-            if (resultado.length == 0) {
+            }
+
+            function removerPedido() {
                 url = "http://loja.buiar.com/?key=rbqz3d&f=json&c=pedido&t=remover"
                 params += '&id=' + id
                 console.log(url + params)
