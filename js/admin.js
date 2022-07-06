@@ -587,7 +587,6 @@ function excluirPedido(id) {
             function removerItem() {
                 if (resultado.length == 0) {
                     removerPedido()
-                    return
                 }
                 url = "http://loja.buiar.com/?key=rbqz3d&f=json&c=item&t=remover"
                 params += '&id=' + resultado[0].id
@@ -598,9 +597,9 @@ function excluirPedido(id) {
                 request.send(params)
                 request.onload = function () {
                     if (request.readyState == 4 && request.status == 200) {
-                    console.log('removeuitem')
+                    console.log('removeu item')
                     console.log(resultado.length)
-                    excluirPedido()
+                    excluirPedido(id)
                     }
                 }
             }

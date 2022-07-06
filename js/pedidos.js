@@ -3,7 +3,7 @@ carregarDropDown()
 
 function carregarDropDown() {
     let url = "http://loja.buiar.com/?key=rbqz3d&f=json&c=pedido&t=listar"
-    
+
     request.open('GET', url);
     request.responseType = 'json';
     request.send()
@@ -28,11 +28,12 @@ function carregarDropDown() {
 }
 function listarPedido(id) {
     document.getElementById('card-pedidos').style.display = 'grid'
+    document.getElementById('card-detalhes').style.display = 'none'
     document.getElementById('card-pedidos').innerText = ''
     let url = "http://loja.buiar.com/?key=rbqz3d&f=json&c=pedido&t=listar"
     let params = ''
-    if(id != 0){
-        params ='&id=' + id
+    if (id != 0) {
+        params = '&id=' + id
     }
     console.log(url + params)
     request.open('POST', url);
@@ -45,7 +46,6 @@ function listarPedido(id) {
             console.log(resultado)
             let card = document.getElementById('card-pedidos')
             card.innerText = ''
-            let i = 0
 
             resultado.forEach(e => {
 
@@ -66,7 +66,7 @@ function listarPedido(id) {
                 divConteudo.appendChild(span)
 
                 span = document.createElement('span')
-                span.innerText = 'Cep: ' +  e.cep
+                span.innerText = 'Cep: ' + e.cep
                 divConteudo.appendChild(span)
 
                 span = document.createElement('span')
@@ -86,9 +86,9 @@ function listarPedido(id) {
                 divConteudo.appendChild(span)
 
                 span = document.createElement('span')
-                span.innerText = 'Uf: ' + e.complemento
+                span.innerText = 'Uf: ' + e.uf
                 divConteudo.appendChild(span)
-                
+
                 let button = document.createElement('button')
                 button.setAttribute('onclick', 'gerarBoleto(' + e.id + ')')
                 button.setAttribute('class', 'btn btn-secondary')
@@ -109,17 +109,16 @@ function listarPedido(id) {
 }
 
 function gerarBoleto(id) {
-    window.location.href = "http://loja.buiar.com/?key=aula&c=boleto&t=listar&id=" + id
+    window.open("http://loja.buiar.com/?key=aula&c=boleto&t=listar&id=" + id)
 }
 
 function exibirDetalhesPedido(id) {
     document.getElementById('card-pedidos').style.display = 'none'
+    document.getElementById('card-detalhes').style.display = 'grid'
 
     let url = "http://loja.buiar.com/?key=rbqz3d&f=json&c=item&t=listar"
     let params = ''
-    params ='&id=' + id
-    console.log(url + params)
-    
+    params = '&id=' + id
     console.log(url + params)
     request.open('POST', url);
     request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
@@ -131,35 +130,60 @@ function exibirDetalhesPedido(id) {
             console.log(resultado)
             let card = document.getElementById('card-detalhes')
             card.innerText = ''
+            let i = 0;
+            listarDetalhes()
+            function listarDetalhes() {
+                if (i >= resultado.lenght) {
+                    return;
+                }
+                else {
+                    let url = "http://loja.buiar.com/?key=rbqz3d&f=json&c=produto&t=listar"
+                    let params = ''
+                    params = '&id=' + resultado[i].produto
+                    console.log(url + params)
+                    request.open('POST', url);
+                    request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+                    request.responseType = 'json';
+                    request.send(params)
+                    request.onload = () => {
 
-            resultado.forEach(e => {
+                        let produto = request.response.dados
+                        console.log(produto)
 
-                let divCol = document.createElement('div')
-                divCol.setAttribute('class', 'col-12')
-                card.appendChild(divCol)
+                        let divCol = document.createElement('div')
+                        divCol.setAttribute('class', 'col-12')
+                        card.appendChild(divCol)
 
-                let divConteudo = document.createElement('div')
-                divConteudo.setAttribute('class', 'card-pedido-conteudo')
-                divCol.appendChild(divConteudo)
+                        let divConteudo = document.createElement('div')
+                        divConteudo.setAttribute('class', 'card-pedido-conteudo')
+                        divCol.appendChild(divConteudo)
 
-                let span = document.createElement('span')
-                span.innerText = 'ID: ' + e.id
-                divConteudo.appendChild(span)
+                        let span = document.createElement('span')
+                        span.innerText = 'ID: ' + resultado[i].id
+                        divConteudo.appendChild(span)
 
-                span = document.createElement('span')
-                span.innerText = 'Pedido: ' + e.pedido
-                divConteudo.appendChild(span)
+                        span = document.createElement('span')
+                        span.innerText = 'Pedido: ' + resultado[i].pedido
+                        divConteudo.appendChild(span)
 
-                span = document.createElement('span')
-                span.innerText = 'Produto: ' +  e.produto
-                divConteudo.appendChild(span)
+                        span = document.createElement('span')
+                        span.innerText = 'Produto: ' + produto[0].nome
+                        divConteudo.appendChild(span)
 
-                span = document.createElement('span')
-                span.innerText = 'Pedido: ' +  e.produto
-                divConteudo.appendChild(span)
+                        span = document.createElement('span')
+                        span.innerText = 'Preço: ' + (produto[0].preco * 1).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
+                        divConteudo.appendChild(span)
 
-                card.appendChild(divCol)
-            });
+                        span = document.createElement('span')
+                        span.innerText = 'Quantidade: ' + resultado[i].qtd * 1
+                        divConteudo.appendChild(span)
+
+                        card.appendChild(divCol)
+                        i++
+                        listarDetalhes()
+                    }
+                }
+            };
         }
     }
 }

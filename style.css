@@ -593,6 +593,14 @@ select {
     border-radius: 10px;
     background-color: #E8F1F2;
 }
+.input-quantidade {
+    border-radius: 5px;
+    border: 1px solid #247BA0;
+    width: 50px;
+    height: 25px;
+    margin-left: 5px;
+    background-color: #E8F1F2;
+}
 /*  .carta-container{
     position: relative;
     width: 150px;

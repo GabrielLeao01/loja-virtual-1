@@ -159,7 +159,7 @@ function mostrarCarrinho() {
     cardCarrinho.innerText = ''
     console.log(carrinho)
     let i = 0;
-    
+
     carrinho.forEach(e => {
         console.log(i)
         let div = document.createElement('div')
@@ -212,27 +212,29 @@ function mostrarCarrinho() {
         i++
     });
 
-    let cardFinalizarCompra = document.getElementById('card-finalizar-compra')
-    let h2 = document.createElement('h2')
-    h2.innerText = 'Subtotal'
-    cardFinalizarCompra.appendChild(h2)
+    if (i > 0) {
+        let cardFinalizarCompra = document.getElementById('card-finalizar-compra')
+        let h2 = document.createElement('h2')
+        h2.innerText = 'Subtotal'
+        cardFinalizarCompra.appendChild(h2)
 
-    let span = document.createElement('span')
-    span.setAttribute('id', 'quantidade-total')
-    span.innerText = 'Quantidade de itens: ' + qtd
-    cardFinalizarCompra.appendChild(span)
+        let span = document.createElement('span')
+        span.setAttribute('id', 'quantidade-total')
+        span.innerText = 'Quantidade de itens: ' + qtd
+        cardFinalizarCompra.appendChild(span)
 
-    span = document.createElement('span')
-    span.setAttribute('id', 'preco-total')
-    span.innerText = 'Preço total: ' + (precoFinal * 1).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
-    cardFinalizarCompra.appendChild(span)
+        span = document.createElement('span')
+        span.setAttribute('id', 'preco-total')
+        span.innerText = 'Preço total: ' + (precoFinal * 1).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
+        cardFinalizarCompra.appendChild(span)
 
-    button = document.createElement('button')
-    button.setAttribute('class', 'btn btn-primary')
-    button.setAttribute('onclick', 'finalizarCompra()')
-    button.innerText = 'Finalizar Compra'
+        button = document.createElement('button')
+        button.setAttribute('class', 'btn btn-primary')
+        button.setAttribute('onclick', 'finalizarCompra()')
+        button.innerText = 'Finalizar Compra'
 
-    cardFinalizarCompra.appendChild(button)
+        cardFinalizarCompra.appendChild(button)
+    }
 
 }
 
@@ -257,12 +259,12 @@ function atualizarQuantidade(e) {
     let key = carrinho.findIndex(item => item.id == e.id)
     if (key > -1) {
         console.log(carrinho[key])
-        carrinho[key].quantidade = document.getElementById('qtd-carrinho'+[key]).value
+        carrinho[key].quantidade = document.getElementById('qtd-carrinho' + [key]).value
     }
     atualizarCarrinho()
     document.getElementById('quantidade-total').innerText = 'Quantidade de itens: ' + qtd
     document.getElementById('preco-total').innerText = 'Preço Total: ' + (precoFinal * 1).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
-    
+
     if (carrinho[key].quantidade == 0) {
         carrinho.splice(key, 1)
         mostrarCarrinho()
